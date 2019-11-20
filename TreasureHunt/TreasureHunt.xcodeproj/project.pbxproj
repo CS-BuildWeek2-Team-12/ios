@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		C482DB7C23837D0900256C61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482DB7B23837D0900256C61 /* AppDelegate.swift */; };
 		C482DB7E23837D0900256C61 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482DB7D23837D0900256C61 /* SceneDelegate.swift */; };
-		C482DB8023837D0900256C61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482DB7F23837D0900256C61 /* ViewController.swift */; };
 		C482DB8323837D0900256C61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C482DB8123837D0900256C61 /* Main.storyboard */; };
 		C482DB8523837D0C00256C61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C482DB8423837D0C00256C61 /* Assets.xcassets */; };
 		C482DB8823837D0C00256C61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C482DB8623837D0C00256C61 /* LaunchScreen.storyboard */; };
 		C482DB9323837D0C00256C61 /* TreasureHuntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482DB9223837D0C00256C61 /* TreasureHuntTests.swift */; };
+		C4CEACC82385E7EA00DAC71C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CEACC72385E7EA00DAC71C /* MapViewController.swift */; };
 		C4E936CE2384B46700A03729 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E936CD2384B46700A03729 /* APIController.swift */; };
 		C4E936D02384B50D00A03729 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E936CF2384B50D00A03729 /* Room.swift */; };
 		C4E936D22384B6BC00A03729 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E936D12384B6BC00A03729 /* Config.swift */; };
@@ -33,7 +33,6 @@
 		C482DB7823837D0900256C61 /* TreasureHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreasureHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C482DB7B23837D0900256C61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C482DB7D23837D0900256C61 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C482DB7F23837D0900256C61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C482DB8223837D0900256C61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C482DB8423837D0C00256C61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C482DB8723837D0C00256C61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		C482DB8E23837D0C00256C61 /* TreasureHuntTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TreasureHuntTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C482DB9223837D0C00256C61 /* TreasureHuntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureHuntTests.swift; sourceTree = "<group>"; };
 		C482DB9423837D0C00256C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4CEACC72385E7EA00DAC71C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C4E936CD2384B46700A03729 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		C4E936CF2384B50D00A03729 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		C4E936D12384B6BC00A03729 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 			children = (
 				C482DB7B23837D0900256C61 /* AppDelegate.swift */,
 				C482DB7D23837D0900256C61 /* SceneDelegate.swift */,
-				C482DB7F23837D0900256C61 /* ViewController.swift */,
 				C482DB8123837D0900256C61 /* Main.storyboard */,
+				C4CEACC72385E7EA00DAC71C /* MapViewController.swift */,
 				C4E936CD2384B46700A03729 /* APIController.swift */,
 				C4E936D12384B6BC00A03729 /* Config.swift */,
 				C4E936D32384BA0500A03729 /* Models */,
@@ -218,7 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E936CE2384B46700A03729 /* APIController.swift in Sources */,
-				C482DB8023837D0900256C61 /* ViewController.swift in Sources */,
+				C4CEACC82385E7EA00DAC71C /* MapViewController.swift in Sources */,
 				C482DB7C23837D0900256C61 /* AppDelegate.swift in Sources */,
 				C482DB7E23837D0900256C61 /* SceneDelegate.swift in Sources */,
 				C4E936D02384B50D00A03729 /* Room.swift in Sources */,

@@ -1,24 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="liu-AP-Q50">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Map View Controller-->
+        <scene sceneID="6Um-at-aWp">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="liu-AP-Q50" customClass="MapViewController" customModule="TreasureHunt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ldb-rI-K4s">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FlG-4i-H0a">
+                                <rect key="frame" x="65" y="118" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Init"/>
+                                <connections>
+                                    <action selector="initializePlayer:" destination="liu-AP-Q50" eventType="touchUpInside" id="PGU-y0-Vfe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCk-Fe-tNm">
+                                <rect key="frame" x="155" y="118" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take"/>
+                                <connections>
+                                    <action selector="take:" destination="liu-AP-Q50" eventType="touchUpInside" id="z7i-3X-dtJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccw-Z2-Y35">
+                                <rect key="frame" x="257" y="118" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Drop"/>
+                                <connections>
+                                    <action selector="drop:" destination="liu-AP-Q50" eventType="touchUpInside" id="Eyf-OM-nj1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpA-yi-fbO">
+                                <rect key="frame" x="344" y="118" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sell"/>
+                                <connections>
+                                    <action selector="sell:" destination="liu-AP-Q50" eventType="touchUpInside" id="jIE-io-aXC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJ9-JG-AS4">
+                                <rect key="frame" x="58" y="183" width="44" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Status"/>
+                                <connections>
+                                    <action selector="getStatus:" destination="liu-AP-Q50" eventType="touchUpInside" id="FIw-lA-o70"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voz-3O-rMQ">
+                                <rect key="frame" x="142" y="183" width="58" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Examine"/>
+                                <connections>
+                                    <action selector="examine:" destination="liu-AP-Q50" eventType="touchUpInside" id="Oe6-Wu-p32"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHr-qB-PvC">
+                                <rect key="frame" x="256" y="183" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Wear"/>
+                                <connections>
+                                    <action selector="wear:" destination="liu-AP-Q50" eventType="touchUpInside" id="de5-tW-KB7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0h1-Ob-9IO">
+                                <rect key="frame" x="330" y="183" width="58" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Undress"/>
+                                <connections>
+                                    <action selector="undress:" destination="liu-AP-Q50" eventType="touchUpInside" id="yGu-Kt-K8A"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LSK-Bz-opw">
+                                <rect key="frame" x="111" y="682" width="256" height="86"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aO-JL-4Rl">
+                                        <rect key="frame" x="93" y="0.0" width="70.5" height="22"/>
+                                        <state key="normal" title="Button" image="arrowtriangle.up" catalog="system"/>
+                                        <connections>
+                                            <action selector="moveNorth:" destination="liu-AP-Q50" eventType="touchUpInside" id="G70-UZ-UTC"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="113" translatesAutoresizingMaskIntoConstraints="NO" id="8z1-3V-6Ew">
+                                        <rect key="frame" x="0.0" y="32" width="256" height="22"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENo-pK-0R0">
+                                                <rect key="frame" x="0.0" y="0.0" width="71.5" height="22"/>
+                                                <state key="normal" title="Button" image="arrowtriangle.left" catalog="system"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1h-d4-wY8">
+                                                <rect key="frame" x="184.5" y="0.0" width="71.5" height="22"/>
+                                                <state key="normal" title="Button" image="arrowtriangle.right" catalog="system"/>
+                                                <connections>
+                                                    <action selector="moveEast:" destination="liu-AP-Q50" eventType="touchUpInside" id="gf6-lh-jON"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="O1h-d4-wY8" firstAttribute="height" secondItem="ENo-pK-0R0" secondAttribute="height" id="naM-XS-lyY"/>
+                                            <constraint firstItem="O1h-d4-wY8" firstAttribute="width" secondItem="ENo-pK-0R0" secondAttribute="width" id="qZb-Bg-Mfj"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOD-G4-GQl">
+                                        <rect key="frame" x="92.5" y="64" width="71.5" height="22"/>
+                                        <state key="normal" title="Button" image="arrowtriangle.down" catalog="system"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="SOD-G4-GQl" firstAttribute="height" secondItem="0aO-JL-4Rl" secondAttribute="height" id="1PE-6z-UEN"/>
+                                    <constraint firstItem="O1h-d4-wY8" firstAttribute="height" secondItem="SOD-G4-GQl" secondAttribute="height" id="Dfh-pn-qps"/>
+                                    <constraint firstItem="O1h-d4-wY8" firstAttribute="width" secondItem="SOD-G4-GQl" secondAttribute="width" id="crJ-bb-6jm"/>
+                                    <constraint firstItem="SOD-G4-GQl" firstAttribute="width" secondItem="0aO-JL-4Rl" secondAttribute="width" multiplier="1.01418" id="kDM-wf-uHP"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="UUV-ag-nlc"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y6x-AX-aGO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-45" y="79"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowtriangle.down" catalog="system" width="64" height="62"/>
+        <image name="arrowtriangle.left" catalog="system" width="64" height="56"/>
+        <image name="arrowtriangle.right" catalog="system" width="64" height="56"/>
+        <image name="arrowtriangle.up" catalog="system" width="64" height="62"/>
+    </resources>
 </document>
