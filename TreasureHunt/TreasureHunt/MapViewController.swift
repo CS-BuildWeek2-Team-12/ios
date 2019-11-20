@@ -11,6 +11,23 @@ import UIKit
 class MapViewController: UIViewController {
 
     let apiController = APIController()
+    var currentRoom: Room? {
+        didSet {
+            DispatchQueue.main.async {
+                self.roomIdLabel.text = "Room \(self.currentRoom!.id)"
+                self.coordinatesLabel.text = self.currentRoom!.coordinates
+                self.descriptionLabel.text = self.currentRoom!.description
+                self.messagesTextView.text += "\n \(String(describing: self.currentRoom!.messages))"
+            }
+        }
+    }
+    
+    
+    @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var roomIdLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var coordinatesLabel: UILabel!
+    @IBOutlet weak var messagesTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,9 +35,23 @@ class MapViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+
+    
+    
+    
 
     @IBAction func initializePlayer(_ sender: Any) {
-        
+        apiController.initPlayer { (room, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let room = room {
+                print(room)
+                self.currentRoom = room
+            }
+        }
     }
     
     @IBAction func take(_ sender: Any) {
@@ -36,6 +67,18 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func getStatus(_ sender: Any) {
+        apiController.getStatus { (status, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let status = status {
+                print(status)
+                DispatchQueue.main.async {
+                    self.messagesTextView.text += "\n \(String(describing: status.messages))"
+                }
+            }
+        }
     }
     
     
@@ -49,20 +92,61 @@ class MapViewController: UIViewController {
     @IBAction func undress(_ sender: Any) {
     }
     
+
+    
     @IBAction func moveNorth(_ sender: Any) {
+        apiController.move(direction: "n") { (room, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let room = room {
+                print(room)
+                self.currentRoom = room
+            }
+        }
     }
     
     
     @IBAction func moveEast(_ sender: Any) {
+        apiController.move(direction: "n") { (room, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let room = room {
+                print(room)
+                self.currentRoom = room
+            }
+        }
     }
     
+    
     @IBAction func moveSouth(_ sender: Any) {
+        apiController.move(direction: "n") { (room, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let room = room {
+                print(room)
+                self.currentRoom = room
+            }
+        }
     }
     
     @IBAction func moveWest(_ sender: Any) {
+        apiController.move(direction: "n") { (room, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let room = room {
+                print(room)
+                self.currentRoom = room
+            }
+        }
     }
-    
-    
     
     
     /*

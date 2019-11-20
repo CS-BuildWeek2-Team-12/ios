@@ -14,6 +14,7 @@
 		C482DB8823837D0C00256C61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C482DB8623837D0C00256C61 /* LaunchScreen.storyboard */; };
 		C482DB9323837D0C00256C61 /* TreasureHuntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482DB9223837D0C00256C61 /* TreasureHuntTests.swift */; };
 		C4CEACC82385E7EA00DAC71C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CEACC72385E7EA00DAC71C /* MapViewController.swift */; };
+		C4CEACCC2385F8BF00DAC71C /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CEACCB2385F8BF00DAC71C /* Status.swift */; };
 		C4E936CE2384B46700A03729 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E936CD2384B46700A03729 /* APIController.swift */; };
 		C4E936D02384B50D00A03729 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E936CF2384B50D00A03729 /* Room.swift */; };
 		C4E936D22384B6BC00A03729 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E936D12384B6BC00A03729 /* Config.swift */; };
@@ -41,6 +42,7 @@
 		C482DB9223837D0C00256C61 /* TreasureHuntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureHuntTests.swift; sourceTree = "<group>"; };
 		C482DB9423837D0C00256C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4CEACC72385E7EA00DAC71C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C4CEACCB2385F8BF00DAC71C /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		C4E936CD2384B46700A03729 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		C4E936CF2384B50D00A03729 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		C4E936D12384B6BC00A03729 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				C4E936CF2384B50D00A03729 /* Room.swift */,
+				C4CEACCB2385F8BF00DAC71C /* Status.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			files = (
 				C4E936CE2384B46700A03729 /* APIController.swift in Sources */,
 				C4CEACC82385E7EA00DAC71C /* MapViewController.swift in Sources */,
+				C4CEACCC2385F8BF00DAC71C /* Status.swift in Sources */,
 				C482DB7C23837D0900256C61 /* AppDelegate.swift in Sources */,
 				C482DB7E23837D0900256C61 /* SceneDelegate.swift in Sources */,
 				C4E936D02384B50D00A03729 /* Room.swift in Sources */,

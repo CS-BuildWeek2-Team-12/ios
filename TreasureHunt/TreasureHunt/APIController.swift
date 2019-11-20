@@ -11,6 +11,10 @@ import Foundation
 
 class APIController {
     
+    
+    var rooms: [Room] = []
+    
+    
     enum HTTPMethod: String {
         case get = "GET"
         case put = "PUT"
@@ -69,8 +73,8 @@ class APIController {
     func move(direction: String, completion: @escaping (Room?, Error?) -> Void) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("move")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -97,9 +101,9 @@ class APIController {
             
             
             do {
-                //print(String(decoding: data, as: UTF8.self))
-                let room = try JSONDecoder().decode(Room.self, from: data)
-                completion(room, nil)
+                print(String(decoding: data, as: UTF8.self))
+//                let room = try JSONDecoder().decode(Room.self, from: data)
+                completion(nil, nil)
             } catch {
                 NSLog("Error decoding room: \(error)")
                 completion(nil, error)
@@ -344,14 +348,14 @@ class APIController {
     // MARK: - Status
     
     
-    func getStatus(completion: @escaping (Room?, Error?) -> Void) {
+    func getStatus(completion: @escaping (Status?, Error?) -> Void) {
         
         let requestURL = Config.baseURL
             .appendingPathComponent("status")
             .appendingPathExtension("json")
 
         var request = URLRequest(url: requestURL)
-        request.httpMethod = "GET"
+        request.httpMethod = HTTPMethod.post.rawValue
 
         request.setValue("Token \(Config.apiKey)", forHTTPHeaderField: "Authorization")
 
@@ -372,8 +376,8 @@ class APIController {
 
             do {
                 //print(String(decoding: data, as: UTF8.self))
-                let room = try JSONDecoder().decode(Room.self, from: data)
-                completion(room, nil)
+                let status = try JSONDecoder().decode(Status.self, from: data)
+                completion(status, nil)
             } catch {
                 NSLog("Error decoding room: \(error)")
                 completion(nil, error)

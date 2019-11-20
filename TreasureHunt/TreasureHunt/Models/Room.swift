@@ -14,6 +14,10 @@ struct Room: Codable {
     var title: String
     var description: String
     var coordinates: String
+    var elevation: Int?
+    var terrain: String?
+    var players: [String]?
+    var items: [String]?
     var exits: [String]
     var cooldown: Double
     var errors: [String]?
@@ -24,6 +28,10 @@ struct Room: Codable {
         case title
         case description
         case coordinates
+        case elevation
+        case terrain
+        case players
+        case items
         case exits
         case cooldown
         case errors
