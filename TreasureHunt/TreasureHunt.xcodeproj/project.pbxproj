@@ -91,7 +91,7 @@
 				C482DB8123837D0900256C61 /* Main.storyboard */,
 				C4E936CD2384B46700A03729 /* APIController.swift */,
 				C4E936D12384B6BC00A03729 /* Config.swift */,
-				C4E936CF2384B50D00A03729 /* Room.swift */,
+				C4E936D32384BA0500A03729 /* Models */,
 				C482DB8423837D0C00256C61 /* Assets.xcassets */,
 				C482DB8623837D0C00256C61 /* LaunchScreen.storyboard */,
 				C482DB8923837D0C00256C61 /* Info.plist */,
@@ -106,6 +106,14 @@
 				C482DB9423837D0C00256C61 /* Info.plist */,
 			);
 			path = TreasureHuntTests;
+			sourceTree = "<group>";
+		};
+		C4E936D32384BA0500A03729 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C4E936CF2384B50D00A03729 /* Room.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
