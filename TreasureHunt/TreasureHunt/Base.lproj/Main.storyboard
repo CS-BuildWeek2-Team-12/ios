@@ -93,18 +93,29 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMr-F9-jD4">
                                 <rect key="frame" x="8" y="116" width="398" height="298.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG9-9I-D1K">
-                                        <rect key="frame" x="297" y="8" width="93" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="roomId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbT-sq-N5u">
-                                        <rect key="frame" x="8" y="8" width="54" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sa3-O7-0XB">
+                                        <rect key="frame" x="8" y="8" width="382" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="roomId" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbT-sq-N5u">
+                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYT-8T-y2Q">
+                                                <rect key="frame" x="127.5" y="0.0" width="127" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG9-9I-D1K">
+                                                <rect key="frame" x="254.5" y="0.0" width="127.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sa2-0Z-VA4">
                                         <rect key="frame" x="0.0" y="270" width="398" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -114,13 +125,12 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="AG9-9I-D1K" firstAttribute="top" secondItem="iMr-F9-jD4" secondAttribute="top" constant="8" id="0of-cN-r6s"/>
+                                    <constraint firstItem="sa3-O7-0XB" firstAttribute="top" secondItem="iMr-F9-jD4" secondAttribute="top" constant="8" id="Ba6-WJ-jVo"/>
                                     <constraint firstItem="sa2-0Z-VA4" firstAttribute="centerX" secondItem="iMr-F9-jD4" secondAttribute="centerX" id="Nay-wt-XIG"/>
                                     <constraint firstAttribute="bottom" secondItem="sa2-0Z-VA4" secondAttribute="bottom" constant="8" id="SN1-Xm-Ouu"/>
-                                    <constraint firstItem="MbT-sq-N5u" firstAttribute="leading" secondItem="iMr-F9-jD4" secondAttribute="leading" constant="8" id="hLC-zb-PA5"/>
-                                    <constraint firstItem="MbT-sq-N5u" firstAttribute="top" secondItem="iMr-F9-jD4" secondAttribute="top" constant="8" id="ooX-Hx-Q8m"/>
+                                    <constraint firstItem="sa3-O7-0XB" firstAttribute="leading" secondItem="iMr-F9-jD4" secondAttribute="leading" constant="8" id="Vdp-u3-XrK"/>
                                     <constraint firstItem="sa2-0Z-VA4" firstAttribute="width" secondItem="iMr-F9-jD4" secondAttribute="width" id="rhV-c2-9Xx"/>
-                                    <constraint firstAttribute="trailing" secondItem="AG9-9I-D1K" secondAttribute="trailing" constant="8" id="vvw-V8-8Io"/>
+                                    <constraint firstAttribute="trailing" secondItem="sa3-O7-0XB" secondAttribute="trailing" constant="8" id="xpT-Al-urs"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Ddx-d1-Bek">
@@ -192,8 +202,13 @@
                     <connections>
                         <outlet property="coordinatesLabel" destination="AG9-9I-D1K" id="PBJ-LU-w9O"/>
                         <outlet property="descriptionLabel" destination="sa2-0Z-VA4" id="oS7-g7-aJa"/>
+                        <outlet property="exitsLabel" destination="EYT-8T-y2Q" id="tvs-5Q-nIo"/>
                         <outlet property="mapView" destination="iMr-F9-jD4" id="7ds-OZ-1C2"/>
                         <outlet property="messagesTextView" destination="3RF-u8-qQw" id="YBF-bq-XDL"/>
+                        <outlet property="moveEastButton" destination="bfo-ef-3Q6" id="fLB-N0-Dev"/>
+                        <outlet property="moveNorthButton" destination="hZP-3n-0h5" id="mT7-iR-Nrp"/>
+                        <outlet property="moveSouthButton" destination="Mnu-wM-4hd" id="ox7-QD-hr5"/>
+                        <outlet property="moveWestButton" destination="Ijj-uV-M2U" id="ykY-k7-TVf"/>
                         <outlet property="roomIdLabel" destination="MbT-sq-N5u" id="6aL-hN-CJR"/>
                     </connections>
                 </viewController>

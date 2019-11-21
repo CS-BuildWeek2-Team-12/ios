@@ -10,15 +10,15 @@ import Foundation
 
 struct Room: Codable {
     
-    var id: Int
-    var title: String
-    var description: String
-    var coordinates: String
+    var id: Int?
+    var title: String?
+    var description: String?
+    var coordinates: String?
     var elevation: Int?
     var terrain: String?
     var players: [String]?
     var items: [String]?
-    var exits: [String]
+    var exits: [String]?
     var cooldown: Double
     var errors: [String]?
     var messages: [String]?

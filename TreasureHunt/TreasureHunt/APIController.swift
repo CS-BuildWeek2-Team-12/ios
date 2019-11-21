@@ -101,9 +101,9 @@ class APIController {
             
             
             do {
-                print(String(decoding: data, as: UTF8.self))
-//                let room = try JSONDecoder().decode(Room.self, from: data)
-                completion(nil, nil)
+                //print(String(decoding: data, as: UTF8.self))
+                let room = try JSONDecoder().decode(Room.self, from: data)
+                completion(room, nil)
             } catch {
                 NSLog("Error decoding room: \(error)")
                 completion(nil, error)
@@ -120,8 +120,8 @@ class APIController {
         
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("move")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -168,11 +168,11 @@ class APIController {
     // MARK: - Treasure
     
     
-    func takeTreasure(nameOfTreasure: String) {
+    func takeTreasure(nameOfTreasure: String, completion: @escaping (Room?, Error?) -> Void) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("take")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -187,20 +187,24 @@ class APIController {
             
             if let error = error {
                 NSLog("Error moving player: \(error)")
+                completion(nil, error)
                 return
             }
             
             guard let data = data else {
                 NSLog("No data returned")
+                completion(nil, NSError(domain: "No data returned", code: 001, userInfo: [NSLocalizedDescriptionKey : "No data returned from URLSession Data Task"]))
                 return
             }
             
             
             do {
-                print(String(decoding: data, as: UTF8.self))
-                //let room = try JSONDecoder().decode(Room.self, from: data)
+                //print(String(decoding: data, as: UTF8.self))
+                let room = try JSONDecoder().decode(Room.self, from: data)
+                completion(room, nil)
             } catch {
                 NSLog("Error decoding room: \(error)")
+                completion(nil, error)
                 return
             }
         }.resume()
@@ -209,11 +213,11 @@ class APIController {
     
     
     
-    func dropTreasure(nameOfTreasure: String) {
+    func dropTreasure(nameOfTreasure: String, completion: @escaping (Room?, Error?) -> Void) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("drop")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -228,20 +232,24 @@ class APIController {
             
             if let error = error {
                 NSLog("Error moving player: \(error)")
+                completion(nil, error)
                 return
             }
             
             guard let data = data else {
                 NSLog("No data returned")
+                completion(nil, NSError(domain: "No data returned", code: 001, userInfo: [NSLocalizedDescriptionKey : "No data returned from URLSession Data Task"]))
                 return
             }
             
             
             do {
-                print(String(decoding: data, as: UTF8.self))
-                //let room = try JSONDecoder().decode(Room.self, from: data)
+                //print(String(decoding: data, as: UTF8.self))
+                let room = try JSONDecoder().decode(Room.self, from: data)
+                completion(room, nil)
             } catch {
                 NSLog("Error decoding room: \(error)")
+                completion(nil, error)
                 return
             }
         }.resume()
@@ -257,8 +265,8 @@ class APIController {
     func sell(nameOfTreasure: String, completion: @escaping (Room?, Error?) -> Void) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("sell")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -301,8 +309,8 @@ class APIController {
     func confirmSale(nameOfTreasure: String, completion: @escaping (Room?, Error?) -> Void) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("sell")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
