@@ -21,12 +21,18 @@ class MapViewController: UIViewController {
     
     
     
+    @IBOutlet weak var roomTitleLabel: UILabel!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var roomIdLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var coordinatesLabel: UILabel!
     @IBOutlet weak var messagesTextView: UITextView!
     @IBOutlet weak var exitsLabel: UILabel!
+    
+    @IBOutlet weak var smartMoveSwitch: UISwitch!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +49,9 @@ class MapViewController: UIViewController {
                 }
             }
         }
+        
+        apiController.changeName(newName: "Kobe")
+        
     }
     
     func updateRoom() {
@@ -55,6 +64,10 @@ class MapViewController: UIViewController {
             coordinatesLabel.text = coordinates
             descriptionLabel.text = description
             exitsLabel.text = exits.joined(separator: ", ").uppercased()
+            
+            if let title = currentRoom?.title {
+                roomTitleLabel.text = title
+            }
             
             
             if !exits.contains("n") {
@@ -98,7 +111,6 @@ class MapViewController: UIViewController {
         if let items = currentRoom!.items {
             if items != [] {
                 let alert = UIAlertController(title: "Items Found", message: items.joined(separator: "\n"), preferredStyle: .alert)
-                // TODO take items
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 
                 self.present(alert, animated: true)
@@ -109,25 +121,27 @@ class MapViewController: UIViewController {
         
     }
 
-    
-    
-    
-
-    @IBAction func initializePlayer(_ sender: Any) {
-        apiController.initPlayer { (room, error) in
+    @IBAction func pray(_ sender: Any) {
+        
+        apiController.pray { (room, error) in
             if let error = error {
                 print(error)
             }
             
             if let room = room {
-                print(room)
-                self.currentRoom = room
                 DispatchQueue.main.async {
+                    self.currentRoom = room
                     self.updateRoom()
                 }
             }
         }
+        
     }
+    
+    
+    
+
+
     
     @IBAction func take(_ sender: Any) {
         var itemName = ""
@@ -183,6 +197,43 @@ class MapViewController: UIViewController {
     
     
     @IBAction func sell(_ sender: Any) {
+        
+        var itemName = ""
+        let alert = UIAlertController(title: "Sell an item", message: "Enter the name of the item you're selling", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+        let textField = alert.textFields?[0]
+        alert.addAction(UIAlertAction(title: "Sell Item", style: .default, handler: { (action) in
+            itemName = textField?.text ?? ""
+            self.apiController.sell(nameOfTreasure: itemName)
+            self.confirmSale(itemName: itemName)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    
+    
+    func confirmSale(itemName: String) {
+        
+        let confirmAlert = UIAlertController(title: "Confirm Sale", message: "Are you sure you want to sell \(itemName)", preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { (action) in
+            self.apiController.confirmSale(nameOfTreasure: itemName) { (room, error) in
+                if let error = error {
+                    print(error)
+                }
+                if let room = room {
+                    DispatchQueue.main.async {
+                        self.currentRoom = room
+                        self.updateRoom()
+                    }
+                }
+            }
+        }))
+        
+        self.present(confirmAlert, animated: true)
+        
     }
     
     @IBAction func getStatus(_ sender: Any) {
@@ -230,35 +281,90 @@ class MapViewController: UIViewController {
     }
     
 
+    // MARK: - Movement
     
     @IBAction func moveNorth(_ sender: Any) {
-        apiController.move(direction: "n") { (room, error) in
-            if let error = error {
-                print(error)
-            }
+        if smartMoveSwitch.isOn {
+            var roomId: String = ""
+            let alert = UIAlertController(title: "Smart Move", message: "What is the next room's ID?", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: nil)
+            let textField = alert.textFields?[0]
+            textField?.keyboardType = .numberPad
+            alert.addAction(UIAlertAction(title: "Move North", style: .default, handler: { (action) in
+                roomId = textField?.text ?? ""
+                self.apiController.smartMove(direction: "n", nextRoomId: roomId) { (room, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    if let room = room {
+                        DispatchQueue.main.async {
+                            self.currentRoom = room
+                            self.updateRoom()
+                        }
+                    }
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            if let room = room {
-                print(room)
-                self.currentRoom = room
-                DispatchQueue.main.sync {
-                    self.updateRoom()
+            self.present(alert, animated: true)
+        } else {
+            
+            apiController.move(direction: "n") { (room, error) in
+                if let error = error {
+                    print(error)
+                }
+                
+                if let room = room {
+                    print(room)
+                    self.currentRoom = room
+                    DispatchQueue.main.sync {
+                        self.updateRoom()
+                    }
                 }
             }
+            
         }
+        
     }
     
     
     @IBAction func moveEast(_ sender: Any) {
-        apiController.move(direction: "e") { (room, error) in
-            if let error = error {
-                print(error)
-            }
+        if smartMoveSwitch.isOn {
+            var roomId: String = ""
+            let alert = UIAlertController(title: "Smart Move", message: "What is the next room's ID?", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: nil)
+            let textField = alert.textFields?[0]
+            textField?.keyboardType = .numberPad
+            alert.addAction(UIAlertAction(title: "Move East", style: .default, handler: { (action) in
+                roomId = textField?.text ?? ""
+                self.apiController.smartMove(direction: "e", nextRoomId: roomId) { (room, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    if let room = room {
+                        DispatchQueue.main.async {
+                            self.currentRoom = room
+                            self.updateRoom()
+                        }
+                    }
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            if let room = room {
-                print(room)
-                self.currentRoom = room
-                DispatchQueue.main.sync {
-                    self.updateRoom()
+            self.present(alert, animated: true)
+        } else {
+            
+            apiController.move(direction: "e") { (room, error) in
+                if let error = error {
+                    print(error)
+                }
+                
+                if let room = room {
+                    print(room)
+                    self.currentRoom = room
+                    DispatchQueue.main.sync {
+                        self.updateRoom()
+                    }
                 }
             }
         }
@@ -266,35 +372,87 @@ class MapViewController: UIViewController {
     
     
     @IBAction func moveSouth(_ sender: Any) {
-        apiController.move(direction: "s") { (room, error) in
-            if let error = error {
-                print(error)
-            }
+        if smartMoveSwitch.isOn {
+            var roomId: String = ""
+            let alert = UIAlertController(title: "Smart Move", message: "What is the next room's ID?", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: nil)
+            let textField = alert.textFields?[0]
+            textField?.keyboardType = .numberPad
+            alert.addAction(UIAlertAction(title: "Move South", style: .default, handler: { (action) in
+                roomId = textField?.text ?? ""
+                self.apiController.smartMove(direction: "s", nextRoomId: roomId) { (room, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    if let room = room {
+                        DispatchQueue.main.async {
+                            self.currentRoom = room
+                            self.updateRoom()
+                        }
+                    }
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            if let room = room {
-                print(room)
-                self.currentRoom = room
-                DispatchQueue.main.sync {
-                    self.updateRoom()
+            self.present(alert, animated: true)
+        } else {
+            
+            apiController.move(direction: "s") { (room, error) in
+                if let error = error {
+                    print(error)
+                }
+                
+                if let room = room {
+                    print(room)
+                    self.currentRoom = room
+                    DispatchQueue.main.sync {
+                        self.updateRoom()
+                    }
                 }
             }
         }
     }
     
     @IBAction func moveWest(_ sender: Any) {
-        apiController.move(direction: "w") { (room, error) in
-            if let error = error {
-                print(error)
-            }
+        if smartMoveSwitch.isOn {
+            var roomId: String = ""
+            let alert = UIAlertController(title: "Smart Move", message: "What is the next room's ID?", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: nil)
+            let textField = alert.textFields?[0]
+            textField?.keyboardType = .numberPad
+            alert.addAction(UIAlertAction(title: "Move West", style: .default, handler: { (action) in
+                roomId = textField?.text ?? ""
+                self.apiController.smartMove(direction: "w", nextRoomId: roomId) { (room, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    if let room = room {
+                        DispatchQueue.main.async {
+                            self.currentRoom = room
+                            self.updateRoom()
+                        }
+                    }
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            if let room = room {
-                print(room)
-                self.currentRoom = room
-                DispatchQueue.main.sync {
-                    self.updateRoom()
+            self.present(alert, animated: true)
+        } else {
+            apiController.move(direction: "w") { (room, error) in
+                if let error = error {
+                    print(error)
+                }
+                
+                if let room = room {
+                    print(room)
+                    self.currentRoom = room
+                    DispatchQueue.main.sync {
+                        self.updateRoom()
+                    }
                 }
             }
         }
+        
     }
     
     

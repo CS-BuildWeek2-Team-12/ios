@@ -262,7 +262,7 @@ class APIController {
     // MARK: - Selling
     
     
-    func sell(nameOfTreasure: String, completion: @escaping (Room?, Error?) -> Void) {
+    func sell(nameOfTreasure: String) {
         
         let requestURL = Config.baseURL
             .appendingPathComponent("sell")
@@ -281,26 +281,23 @@ class APIController {
             
             if let error = error {
                 NSLog("Error moving player: \(error)")
-                completion(nil, error)
                 return
             }
             
             guard let data = data else {
                 NSLog("No data returned")
-                completion(nil, NSError(domain: "No data returned", code: 001, userInfo: [NSLocalizedDescriptionKey : "No data returned from URLSession Data Task"]))
                 return
             }
             
-            
-            do {
-                //print(String(decoding: data, as: UTF8.self))
-                let room = try JSONDecoder().decode(Room.self, from: data)
-                completion(room, nil)
-            } catch {
-                NSLog("Error decoding room: \(error)")
-                completion(nil, error)
-                return
-            }
+//
+//            do {
+//                //print(String(decoding: data, as: UTF8.self))
+//                let room = try JSONDecoder().decode(Room.self, from: data)
+//
+//            } catch {
+//                NSLog("Error decoding room: \(error)")
+//                return
+//            }
         }.resume()
 
     }
@@ -416,8 +413,8 @@ class APIController {
     func wear(nameOfWearable: String) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("wear")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -458,8 +455,8 @@ class APIController {
     func undress(nameOfWearable: String) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("undress")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -503,8 +500,8 @@ class APIController {
     func changeName(newName: String) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("change_name")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -543,11 +540,11 @@ class APIController {
     
     // MARK: - Shrine
     
-    func pray() {
+    func pray(completion: @escaping (Room?, Error?) -> Void) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("pray")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -559,6 +556,7 @@ class APIController {
             
             if let error = error {
                 NSLog("Error moving player: \(error)")
+                completion(nil, error)
                 return
             }
             
@@ -569,10 +567,12 @@ class APIController {
             
             
             do {
-                print(String(decoding: data, as: UTF8.self))
-                //let room = try JSONDecoder().decode(Room.self, from: data)
+                //print(String(decoding: data, as: UTF8.self))
+                let room = try JSONDecoder().decode(Room.self, from: data)
+                completion(room, nil)
             } catch {
                 NSLog("Error decoding room: \(error)")
+                completion(nil, error)
                 return
             }
         }.resume()
@@ -587,8 +587,8 @@ class APIController {
     func fly(direction: String) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("fly")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -631,8 +631,8 @@ class APIController {
     func dash(direction: String, numberOfRooms: String, roomIds: String) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("dash")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -675,8 +675,8 @@ class APIController {
     func carry(nameOfItem: String) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("carry")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -718,8 +718,8 @@ class APIController {
     func receive(nameOfItem: String) {
         
         let requestURL = Config.baseURL
-            .appendingPathExtension("json")
             .appendingPathComponent("receive")
+            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
